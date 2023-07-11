@@ -40,5 +40,14 @@ AuthorSchema.virtual("lifespan").get(function () {
   return `${dob} - ${dod}`;
 });
 
+// Virtuals for formatted dob and dod
+AuthorSchema.virtual("dob_yyyy_mm_dd").get(function () {
+  return DateTime.fromJSDate(this.date_of_birth).toISODate(); // format 'YYYY-MM-DD'
+});
+
+AuthorSchema.virtual("dod_yyyy_mm_dd").get(function () {
+  return DateTime.fromJSDate(this.date_of_death).toISODate(); // format 'YYYY-MM-DD'
+});
+
 // Export model
 module.exports = mongoose.model("Author", AuthorSchema);
