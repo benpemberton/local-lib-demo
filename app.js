@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+require("dotenv").config();
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -19,8 +20,7 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
 // Define the database URL to connect to.
-const mongoDB =
-  "mongodb+srv://bpembers:eyeore123@cluster0.llyym7h.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGO_URI;
 
 // Wait for database to connect, logging an error if there is a problem
 main().catch((err) => console.log(err));
